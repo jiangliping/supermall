@@ -14,18 +14,18 @@
 
 <style>
   .nav-bar{
-    position: sticky;
-    top:0;
+    width: 100%;
+    /* position: fixed;
+    top: 0;
+    z-index: 9; */
     display: flex;
     height: 44px;
     line-height: 44px;
   }
   .left,.right{
     width:60px;
-
   }
   .center{
     flex:1;
-
   }
 </style>

@@ -25,6 +25,7 @@
     methods:{
       iteamClick(index){
         this.currentIndex=index
+        console.log(this.currentIndex)
       }
     }
   }
@@ -35,8 +36,6 @@
     display: flex;
     justify-content:space-around;
     background-color: #fff;
-    position: sticky;
-    top: 44px;
     padding-bottom: 10px;
   }
   .tabcontrolIteam{

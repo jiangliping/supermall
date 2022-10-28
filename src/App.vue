@@ -23,6 +23,9 @@ export default {
 
 <style>
 @import url("assets/css/base.css");
+#app{
+  height: 100%;
+}
 #tab-bar-item{
     flex:1;
     text-align: center;

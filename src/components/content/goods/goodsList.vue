@@ -5,6 +5,7 @@
     <goodsListIteam  v-for="iteam in goodsLists" :goodsListIteams='iteam'></goodsListIteam>
     <goodsListIteam  v-for="iteam in goodsLists" :goodsListIteams='iteam'></goodsListIteam>
     <goodsListIteam  v-for="iteam in goodsLists" :goodsListIteams='iteam'></goodsListIteam>
+    
   </div>
 </template>
 

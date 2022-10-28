@@ -1,11 +1,11 @@
 <template>
-
+ 
     <div id="swipercom">
         <div class="swiper-container" id="swiperIndex">
             <div class="swiper-wrapper">
                <div class="swiper-slide" v-for="(item,i) in banners" :key="i">
-                 <a :href="item.link"><img :src="item.image" alt=""></a>
-                 
+                 <!-- <a :href="item.link"><img :src="item.image" alt=""></a> -->
+                 <a ><img :src="item.pic" alt=""></a>
                 </div>
             </div>
             <!-- 换页器 -->
@@ -24,14 +24,14 @@
     import Swiper from 'swiper';	//引入swiper
     export default {
         name: "Banner",
-        props:{
+        /* props:{
           banners:{
             type:Array,
             default(){
               return[]
             }
           },
-        },
+        }, */
         mounted() {
             var mySwiper=new Swiper('#swiperIndex',{
                 //配置分页器内容
@@ -53,7 +53,16 @@
             })
 
         },
-        
+        data(){
+          return{
+            banners:[
+              {pic:require('@/assets/img/home/1.jpg')},
+              {pic:require('@/assets/img/home/2.jpg')},
+              {pic:require('@/assets/img/home/3.jpg')},
+              {pic:require('@/assets/img/home/4.jpg')}
+            ]
+          }
+        }
     }
 </script>
 
