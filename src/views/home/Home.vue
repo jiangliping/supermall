@@ -4,6 +4,7 @@
          <NavBar class="home-nav">
            <div class="center_p" slot="center">购物车</div>
          </NavBar>
+          <TabControl :titles="['流行','新款','精选']" ref='TabControl01' class="TabControl" v-show="istabFixed" @tabclick='hometabclick'/>
          <Scroll
          class='wrapperbox'
          ref='wrapperboxs'
@@ -12,13 +13,13 @@
          :pullUpLoad='true'
          @pullingUp='loadMore'>
              <!-- banner-->
-             <Banner :banners='banner'/>
+             <Banner :banners='banner' @bannerimgload='bannerimgload'/>
              <!--recommend -->
              <recommend :recommends='recommend'/>
              <!--featureView -->
              <featureView/>
              <!--TabControl -->
-             <TabControl :titles="['流行','新款','精选']"/>
+             <TabControl :titles="['流行','新款','精选']" ref='TabControl02' @tabclick='hometabclick'/>
              <goodsList :goodsLists='list'/>
 
           </Scroll>
@@ -59,6 +60,8 @@
         recommend:[],
         list:[],
         isshowBackup:false,
+        taboffsetTop:0,
+        istabFixed:false,
         /*接口没数据，导致商品无法获取*/
         /*goods:{
             list:[]
@@ -75,6 +78,7 @@
      /* this.getHomeGoods('pop')
        this.getHomeGoods('new')
       this.getHomeGoods('sell') */
+
     },
     methods:{
 
@@ -122,16 +126,29 @@
       backup(){
         this.$refs.wrapperboxs.scrollTo(0,0,500)
       },
+      bannerimgload(){
+        console.log("banner图片加载完毕")
+        console.log(this.$refs.TabControl02.$el.offsetTop)
+        this.taboffsetTop=this.$refs.TabControl02.$el.offsetTop
+        },
       wrapperboxscroll(position){
-        /* console.log(position) */
+        //监听按钮显示与隐藏
         this.isshowBackup=(-position.y)>500
+        //监听tabctrol吸顶
+        this.istabFixed=(-position.y)>this.taboffsetTop
+
       },
       loadMore(){
         //console.log("上拉加载更多")
         this.getHomeGoods(this.currentIndex)
         this.$refs.wrapperboxs.refresh()
       },
-     }
+       hometabclick(index){       
+        this.$refs.TabControl01.currentIndex=index
+        this.$refs.TabControl02.currentIndex=index
+      },
+
+   }
   }
 </script>
 
@@ -157,5 +174,9 @@
   top: 44px;
   bottom: 49px;
   overflow: hidden;
+ }
+ .TabControl{
+   position: relative;
+   z-index: 99;
  }
 </style>

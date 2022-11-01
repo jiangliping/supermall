@@ -4,8 +4,8 @@
         <div class="swiper-container" id="swiperIndex">
             <div class="swiper-wrapper">
                <div class="swiper-slide" v-for="(item,i) in banners" :key="i">
-                 <a :href="item.link"><img :src="item.image" alt=""></a>
-                 
+                 <a :href="item.link"><img :src="item.image" alt="" @load="banimgload"></a>
+
                 </div>
             </div>
             <!-- 换页器 -->
@@ -32,6 +32,11 @@
             }
           },
         },
+        data(){
+          return{
+            isimgload:false
+          }
+        },
         mounted() {
             var mySwiper=new Swiper('#swiperIndex',{
                 //配置分页器内容
@@ -53,7 +58,15 @@
             })
 
         },
-        
+        methods:{
+          banimgload(){
+            if(!this.isimgload){              
+              this.$emit('bannerimgload')
+              this.isimgload=true
+            }
+          }
+        }
+
     }
 </script>
 

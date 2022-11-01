@@ -24,8 +24,9 @@
     },
     methods:{
       iteamClick(index){
+        //console.log(index)
         this.currentIndex=index
-        console.log(this.currentIndex)
+        this.$emit('tabclick',index)
       }
     }
   }
